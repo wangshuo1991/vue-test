@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/animate.css/animate.min.css"/>
+    <style>
+        .div1 {
+            width: 200px;
+            height: 200px;
+            background: #f60;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <my-com></my-com>
+    <all-com></all-com>
+</div>
+<template id="com">
+    <div>
+        <h2>{{msg}}</h2>
+        <input type="button" value="click and animate" @click="show=!show"/>
+        <transition enter-active-class="zoomInLeft" leave-active-class="zoomOutRight">
+            <div v-if="show" class="animated div1"></div>
+        </transition>
+    </div>
+</template>
+<template id="all">
+    <div>
+        <div class="div1" @click="changeColor">
+            {{msg}}
+        </div>
+    </div>
+</template>
+<script src="bower_components/vue/dist/vue.js" type="text/javascript"></script>
+<script type="text/javascript">
+    Vue.component('all-com',{
+        template: '#all',
+        data(){
+            return {
+                msg: '这是一个全局注册的模板'
+            }
+        },
+        methods:{
+            changeColor(){
+                this.msg='我暂时不能改变颜色，但是改变了标题内容'
+            }
+        }
+    })
+
+    new Vue({
+        data: {
+            msg: ''
+        },
+        components: {
+            "my-com": {
+                template: '#com',
+                data(){
+                    return {
+                        msg: 'this is data of template',
+                        show: false
+                    }
+                },
+                methods: {
+
+                }
+            }
+        }
+    }).$mount('#app');
+
+</script>
+
+</body>
+</html>
