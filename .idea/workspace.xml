@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf353243-eee8-4cb3-8148-2ccf009285cb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vue-demo/vue 通信.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vue-demo/.idea/workspace.xml" afterPath="$PROJECT_DIR$/vue-demo/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vue-demo/vue 计算属性.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vue-demo/vue 通信.html" afterPath="$PROJECT_DIR$/vue-demo/vue 通信.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="vue.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,11 +35,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vue 通信.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="vue 通信.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vue-demo/vue 通信.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5966387">
+            <state vertical-scroll-proportion="-17.137932">
               <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vue 计算属性.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vue-demo/vue 计算属性.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6830732">
+              <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -60,6 +71,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/vue-demo/vue 通信.html" />
+        <option value="$PROJECT_DIR$/vue 计算属性.html" />
+        <option value="$PROJECT_DIR$/vue-demo/vue 计算属性.html" />
       </list>
     </option>
   </component>
@@ -196,7 +209,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12183544" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -236,8 +249,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vue-demo/vue 通信.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5966387">
+        <state vertical-scroll-proportion="-17.137932">
           <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vue-demo/vue 计算属性.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6830732">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
           <folding />
         </state>
       </provider>
