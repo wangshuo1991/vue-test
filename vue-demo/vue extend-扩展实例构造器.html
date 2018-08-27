@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue实例构造器</title>
+</head>
+<body>
+
+    <div id="app">
+        <h2>vue实例构造器</h2>
+        <author></author>
+    </div>
+
+    <template id="aaa">
+        <div>
+            <p>{{msg}}</p>
+        </div>
+    </template>
+<script src="bower_components/vue/dist/vue.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    var authorExtend = Vue.extend({
+        template: '#aaa',
+        data: function () {
+            return {
+                msg: 'this is a extend demo'
+            }
+        }
+    });
+
+    new authorExtend().$mount('#app');
+
+</script>
+
+</body>
+</html>

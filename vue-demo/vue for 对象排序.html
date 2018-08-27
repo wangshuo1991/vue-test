@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for 对象排序</title>
+</head>
+<body>
+
+    <div id="app">
+        <ul>
+            <li v-for="value in sortArr">
+                {{value}}
+            </li>
+        </ul>
+    </div>
+
+<script src="bower_components/vue/dist/vue.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    new Vue({
+        data: {
+            dataArr: [
+                {name: 'kk',age: 16},
+                {name: 'gg',age: 14},
+                {name: 'nn',age: 12},
+                {name: 'cc',age: 17}
+            ]
+        },
+        computed: {
+            sortArr: function () {
+                return this.sortItem(this.dataArr,'age');
+            }
+        },
+        methods: {
+            sortItem: function (ary,key) {
+                return ary.sort(function (a,b) {
+                    var x = a[key];
+                    var y = b[key];
+                    return (x<y)?-1:((x>y)?1:0);
+                })
+            }
+        }
+    }).$mount('#app');
+
+</script>
+
+</body>
+</html>

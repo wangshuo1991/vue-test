@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue 组件嵌套</title>
+</head>
+<body>
+
+    <div id="app">
+        <parent></parent>
+    </div>
+
+
+    <template id="parent">
+        <div>
+            <h2>这里是父级组件</h2>
+            <p>父级组件的信息</p>
+            <child>
+            </child>
+        </div>
+    </template>
+
+    <template id="son">
+        <div>
+            <h2>这里是儿子组件</h2>
+            <grand-son></grand-son>
+        </div>
+    </template>
+
+    <template id="grand">
+        <div>
+            <h2>这里是孙子组件</h2>
+            <gg></gg>
+        </div>
+    </template>
+
+    <template id="gg">
+        <div>
+            <h2>这里是重孙子组件</h2>
+
+        </div>
+    </template>
+<script src="bower_components/vue/dist/vue.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    var gg = {
+      template: '#gg'
+    };
+
+    var grandSon = {
+        template: '#grand',
+        components: {
+            'gg': gg
+        }
+    };
+
+    var child = {
+        template: '#son',
+        components: {
+            'grand-son': grandSon
+        }
+    };
+
+    var parent = {
+        template: '#parent',
+        components: {
+            'child': child
+        }
+    };
+
+
+    new Vue({
+        data: {
+            msg: ''
+        },
+        components: {
+            'parent': parent
+        }
+    }).$mount('#app');
+
+</script>
+
+</body>
+</html>

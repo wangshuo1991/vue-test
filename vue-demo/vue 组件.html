@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue 组件 模板</title>
+    <style>
+        .nav-wrapper {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .nav-wrapper {
+            list-style: none;
+            width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .top-nav li {
+            float : left;
+            width: 120px;
+            height: 44px;
+            line-height: 44px;
+            font-size: 14px;
+            color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <my-header></my-header>
+    </div>
+
+    <template id="headerNav">
+        <div>
+            <div class="nav-wrapper">
+                <ul class="top-nav">
+                    <li>{{home}}</li>
+                    <li>{{about}}</li>
+                    <li>{{project}}</li>
+                    <li>{{mart}}</li>
+                </ul>
+            </div>
+        </div>
+    </template>
+<script src="bower_components/vue/dist/vue.js" type="text/javascript"></script>
+<script type="text/ecmascript-6">
+
+    new Vue({
+        data: {
+            msg: ''
+        },
+        components: {
+            'my-header': {
+                template: 'headerNav',
+                data: function () {
+                    return {
+                        home: '首页',
+                        about: '关于',
+                        project: '项目',
+                        mart: '商城'
+                    }
+                }
+            }
+        }
+    }).$mount('#app');
+
+</script>
+
+</body>
+</html>
