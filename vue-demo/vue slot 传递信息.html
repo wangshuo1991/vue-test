@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>slot 传递组件信息</title>
+</head>
+<body>
+
+    <div id="app">
+        <person>
+            <div slot="name">{{info.name}}</div>
+            <div slot="age">{{info.age}}</div>
+            <div slot="job">{{info.job}}</div>
+        </person>
+    </div>  
+    
+    <template id="person">
+        <div>
+          
+            <p>Name: <slot name="name"></slot></p>
+            <p>Age: <slot name="age"></slot></p>
+            <p>Job: <slot name="job"></slot></p>
+
+        </div>
+    </template>
+    <script src="bower_components/vue/dist/vue.js"></script>
+    <script>
+       var person = {
+           template: '#person'
+       };
+
+        var vm = new Vue({
+            data: {
+                info: {
+                    name: 'wangshuo',
+                    age: 27,
+                    job: 'designer and developer'
+                }
+            },
+            components: {
+                'person': person
+            }
+        
+        }).$mount('#app');
+
+        console.log(vm);
+    </script>
+</body>
+</html>

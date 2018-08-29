@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>混合 mixins</title>
+</head>
+<body>
+
+    <div id="app">
+        <p>{{msg}}</p>
+        <button @click="change">升高</button>
+    </div>    
+    <script src="bower_components/vue/dist/vue.js"></script>
+    <script>
+        var showChange = {
+            updated() {
+                console.log('outer function changed!')
+            },
+        };
+
+        var vm = new Vue({
+            data: {
+                msg: '这是我的数据'
+            },
+            methods: {
+               change(){
+                   this.msg += ' - changed';
+               }
+            },
+            computed: {
+                
+            },
+            updated(){
+                console.log('inner function update!');
+            },
+            mixins: [showChange]
+        }).$mount('#app');
+
+        console.log(vm);
+    </script>
+</body>
+</html>
