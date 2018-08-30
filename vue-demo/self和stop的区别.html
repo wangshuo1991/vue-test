@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>self和stop的区别</title>
+    <style>
+        .outer{
+            padding: 50px;
+            background: #096;        
+        }
+        .middle{
+            padding: 50px;
+            background: #f60;        
+        }
+        .inner{
+            padding: 50px;
+            background: #f40;        
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="outer" @click="show1">
+            <div class="middle" @click.self="show2">
+                <div class="inner" @click="show3">
+
+                </div>
+            </div>
+        </div>   
+    </div>
+    
+
+    <script src="./bower_components/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            data: {
+                infoArr: [
+                    {name: 'wangshuo',position: 'father'},
+                    {name: 'heyinge',position: 'mother'},
+                    {name: 'wangzirui',position: 'son'}
+                ]
+            },
+            methods: {
+                show1(){
+                    console.log("outer");
+                },
+                show2(){
+                    console.log("middle");
+                },
+                show3(){
+                    console.log("inner");
+                }
+            }
+
+        }).$mount('#app');
+    </script>
+</body>
+</html>

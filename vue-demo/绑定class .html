@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-model 简易计算器</title>
+    <style>
+        .bg-red {
+            background: #f40;
+        }
+
+        .wid {
+            width: 300px;
+        }
+
+        .heig {
+            height: 300px;
+        }
+
+        .border {
+            border: 10px solid #096;
+        }
+
+        .txt {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 这是数组形式的绑定class  注意： 不加引号就是变量，就必须在data里边找到 三元运算-->
+        <div :class="['bg-red','wid','heig','border',flag?'txt':'']"> 
+            这里一个div
+        </div>
+
+        <div :class="{border: true}">
+            这是另一个div
+        </div>
+    </div>
+    
+
+    <script src="./bower_components/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            data: {
+                flag: false
+            },
+            methods: {
+                
+            }
+
+        }).$mount('#app');
+    </script>
+</body>
+</html>
