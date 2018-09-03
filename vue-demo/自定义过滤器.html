@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义过滤器</title>
+</head>
+<body>
+ 
+    <div id="app">
+
+
+    </div>
+
+    <script src="./bower_components/vue/dist/vue.js"></script>
+    <script>
+        
+        // 全局过滤器 所有的vue实例共用
+
+        // Vue.filter('dataFormat',(data) => {
+        //     return data;
+        // });
+
+
+        // 定义一个私有的过滤器
+        var vm = new Vue({
+            data: {
+
+            },
+            filters: {
+                dataFormat: function (data) {  
+                    return data;
+                }
+            }
+        }).$mount('#app');
+
+    </script>
+</body>
+</html>

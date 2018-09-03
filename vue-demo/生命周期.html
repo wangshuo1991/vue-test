@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>生命周期</title>
+</head>
+<body>
+ 
+    <div id="app">
+        <p id="p1">{{ msg }}</p>
+    </div>
+
+    <script src="./bower_components/vue/dist/vue.js"></script>
+    <script>
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '123'
+            },
+            methods: {
+                show(){
+                    console.log('我是methods');
+                }
+            },
+            beforeCreate () {
+                //console.log(this.msg);
+                //this.show();
+            },
+            created() {
+                console.log(this.msg); // -> 可以访问到 data methods
+                this.show();
+            },
+            beforeMount() {
+                console.log(document.getElementById('p1').innerText);
+                // 还没有挂载到页面，所以页面中的指令和数据等还没有被替换 访问不到
+            },
+            mounted() {
+                // 已经挂载到页面中 ， 也成功的替换了。
+                console.log(document.getElementById('p1').innerText);
+            },
+
+            //-> 运行中的事件 
+            beforeUpdate () {// 数据更新了，数据没有更新。此时界面上还是旧数据，
+                
+            },
+            updated() {
+                
+            },
+            beforeDestroy() {
+                console.log('销毁阶段' + this.show());
+            },
+        });
+
+    </script>
+</body>
+</html>
