@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件的切换</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <a href="" @click.prevent="comName='login'">login</a>
+        <a href="" @click.prevent="comName='register'">register</a>
+
+        <component :is="comName"></component>
+
+    </div>
+
+
+<script src="bower_components/vue/dist/vue.js" type="text/javascript"></script>
+<script>
+
+    Vue.component('login',{
+        template: '<h3>{{msg1}}</h3>',
+        data(){
+            return {
+                msg1: '这是登录组件'
+            }
+        }
+    });
+
+    Vue.component('register',{
+        template: '<h3>{{msg2}}</h3>',
+        data(){
+            return {
+                msg2: '这是注册组件'
+            }
+        }
+    });
+
+    var vm = new Vue({
+        data: {
+            comName: 'login'
+        }
+    }).$mount('#app');
+
+</script>
+
+</body>
+</html>

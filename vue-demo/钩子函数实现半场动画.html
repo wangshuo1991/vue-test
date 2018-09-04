@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>钩子函数实现半场动画</title>
+    <link rel="stylesheet" href="./bower_components/animate.css/animate.css">
+    <style>
+        .ball {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #f40;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="app">
+        <!-- <button @click="show=!show">click me</button>
+        <transition 
+        enter-active-class="animated bounceInLeft" 
+        leave-active-class="animated bounceOutRight" 
+        :duration="{enter: 400,leave: 200}">
+            <p v-if="show"> {{msg}} </p>
+        </transition> -->
+        <button @click="flag=!flag">animate button</button>
+
+        <transition
+        @before-enter="beforeEnter"
+        @enter="enter"
+        @after-enter="afterEnter">
+           <div class="ball" v-if="flag"></div> 
+        </transition>
+
+        
+    </div>
+
+
+    <script src="./bower_components/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            data: {
+                flag: false
+            },
+            methods: {
+                //第一个参数  el表示执行动画的元素 是一个原生的js dom对象 = document.getElementById('')
+                beforeEnter(el){
+                    // 动画起始位置  还未开始  可以在这里设置起始的样式
+                    el.style.transform = 'translate(0,0)'
+                },
+                enter(el,done){ // 第二个参数 动画完成时 会有个停顿  这个参数解决的是这个问题
+                    // 无实际作用  不写出不来效果，动画刷新  也可以写成 offsetHeight / Left /Right
+                    el.offsetWidth;
+                    // 表示 动画开始之后的样式 这里设置 小球完成动画的结束状态
+                    el.style.transform = 'translate(150px,450px)';
+                    el.style.transition = 'all 500ms ease';
+
+                    done(); // 动画完成时 没有停顿
+                },
+                afterEnter(el){
+                    this.flag = !this.flag;
+                    // 为什么在这里要让flag=true。 因为一个动画，他会默认执行 从false -> true    true-> false;
+                    // 我们这里只执行上半场动画 也就是flag变成true的过程，但是再点击一下动画的时候 它不会从头执行，会默认的把下半场动画执行完毕
+                    // 但是下半场动画没有定义 ，他只进行一个操作那就是直接由 true -> false;直接消失。在这里直接变成false，跳过下半场动画。
+                }
+            }
+        }).$mount('#app');
+    </script>
+</body>
+</html>

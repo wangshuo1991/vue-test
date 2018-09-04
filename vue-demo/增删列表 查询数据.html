@@ -42,7 +42,7 @@
             
                 <form class="navbar-form" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="请输入关键字" v-model="keywords">
+                        <input type="text" class="form-control" placeholder="请输入关键字" v-model="keywords" v-focus>
                     </div>
                 </form>
               
@@ -98,7 +98,15 @@
     
 
     <script src="./bower_components/vue/dist/vue.js"></script>
+    <script src="./libs/vue-resource/vue-resource.js"></script>
     <script>
+
+        Vue.directive('focus',{
+            inserted: (el) => {
+                el.focus();
+            }
+        });
+
         new Vue({
             data: {
                 brandList: [
