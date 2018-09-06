@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>路由的基本使用</title>
+    <style>
+        /*高亮样式*/
+        .my-active {
+            color: #fff;
+            background: #096;
+        }
+
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(140px)
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">  
+        <!-- <a href="#/login">Login</a>
+        <a href="#/register">Register</a> -->
+
+        <router-link to="/login">login</router-link>
+        <router-link to="/register">register</router-link>
+        
+        <transition name="" mode="out-in">
+          <router-view></router-view>  
+        </transition>
+        
+    </div>
+    
+    <script src="./vue/vue.js"></script>
+    <script src="./vue/vue-router.js"></script>
+    <script>
+        var login = {
+            template: '<h3>这是登录组件</h3>'
+        };
+
+        var register = {
+            template: '<h3>这是注册组件</h3>'
+        };
+
+        var routerObj = new VueRouter({
+            routes: [
+                {path: '/',redirect: '/login'},
+                {path: '/login',component: login},
+                {path: '/register',component: register}
+            ],
+            linkActiveClass: 'my-active'
+        });
+
+        var vm = new Vue({
+            data: {
+
+            },
+            router: routerObj,
+        }).$mount('#app');
+    </script>
+</body>
+</html>

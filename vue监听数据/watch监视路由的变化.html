@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用watch监控路由的变化</title>
+</head>
+<body>
+    
+    <div id="app">
+        <router-link to="/login">Login</router-link>
+        <router-link to="/register">Register</router-link>
+
+        <router-view>
+
+        </router-view>
+    </div>
+
+    <template id="login">
+        <div>
+            <h3>login ang get more infos</h3>
+        </div>
+    </template>
+
+    <template id="res">
+        <div>
+            <h3>register and have an account</h3>
+        </div>
+    </template>
+
+    <script src="./vue/vue.js"></script>
+    <script src="./vue/vue-router.js"></script>
+    <script>
+        
+        var login = {
+            template: '#login'
+        };
+
+        var register = {
+            template: '#res'
+        };
+
+        var routerObj = new VueRouter({
+            routes: [
+                {path: '/login',component: login},
+                {path: '/register',component: register},
+                {path: '/',redirect: '/login'}
+            ]
+        });
+        
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                firstName: '',
+                lastName: '',
+                fullName: ''
+            },
+            router: routerObj,
+            watch: {
+                '$route.path': newval => {
+                    if(newval === '/login') {
+                        alert('欢迎进入简单系统！');
+                    }else if(newval === '/register'){
+                        alert('欢迎注册');
+                    }
+                }
+            }
+            
+        });
+    </script>
+</body>
+</html>
