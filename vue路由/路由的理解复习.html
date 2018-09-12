@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>路由复习</title>
+    <style>
+        /*高亮样式*/
+        .my-active {
+            color: #fff;
+            background: #096;
+        }
+
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(140px)
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.5s ease;
+        }
+
+        .my-active {
+            color: #fff;
+            text-decoration: none;
+            background: #f40;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">  
+        <router-link to="/home">点击进入首页</router-link>
+        <router-link to="/profile">点击进入我的</router-link>
+
+        <router-view>
+
+        </router-view>
+    </div>
+
+
+    <template id="home">
+        <div>
+            <h3>这里就是首页了 啥也没有，就是这么神奇。</h3>
+        </div>
+    </template>
+
+    <template id="profile">
+        <div>
+            <h3>这里就是我的页面，同样是徒有四壁啊，穷啊</h3>
+        </div>
+    </template>
+    
+    <script src="./vue/vue.js"></script>
+    <script src="./vue/vue-router.js"></script>
+    <script>
+
+        var home = {
+            template: '#home'
+        };
+
+        var profile = {
+            template: '#profile'
+        };
+    
+        var welcome = {
+            template: '<h2>欢迎进入路由的世界</h2>'
+        };
+
+        var router = new VueRouter({
+            routes: [
+                {path: '/home',component: home},
+                {path: '/profile',component: profile},
+                {path:'/',redirect: '/home'}
+            ],
+            linkActiveClass: 'my-active'
+        });
+
+        var vm = new Vue({
+            data: {
+                msg: '这是一个路由复习的例子'
+            },
+            methods: {
+
+            },
+            router,
+        }).$mount('#app');
+    </script>
+</body>
+</html>
