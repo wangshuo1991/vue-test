@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>子传父</title>
+</head>
+<body>
+    
+
+
+    <div id="app">
+        <child @fn="getChildData"></child>
+        <ul>
+            <li v-for="item in arr">
+                <span>{{item.name}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.age}}</span>
+            </li>
+        </ul>
+    </div>
+
+    <template id="chilld">
+        <div>
+            <h3>{{msg}}</h3>
+           
+        </div>
+    </template>
+
+    <script src="../vue/vue.js"></script>
+    <script>
+
+        var child = {
+            template: '#chilld',
+            data(){
+                return {
+                    msg: 'child',
+                    ary: [
+                        {id: 0,name: 'wangshuo',age: 27},
+                        {id: 0,name: 'wangshuo',age: 27},
+                        {id: 0,name: 'wangshuo',age: 27},
+                        {id: 0,name: 'wangshuo',age: 27}
+                    ]
+                }
+            },
+            methods: {
+                sendData(){
+                    this.$emit('fn',this.ary)
+                }
+            },
+            created(){
+                this.sendData();
+            }
+        }
+
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                arr: []
+            },
+            components: {
+                child,
+            },
+            created(){
+                this.getChildData();
+            },
+            methods: {
+                getChildData(childData){
+                    this.arr = childData;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
