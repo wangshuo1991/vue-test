@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue动画</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.5.2/animate.css">
+</head>
+<body>
+    
+    <div id="app">
+        <button @click="show=!show">click</button>
+        <transition 
+        name="my-ant" 
+        enter-active-class="animated bounceInLeft" 
+        leave-active-class="animated bounceOutRight" 
+        :duration="{enter: 300,leave: 350}">
+            <child v-show="show"></child>
+        </transition>
+        
+    </div>
+
+    <template id="child">
+        <div>
+            <h3>{{msg}}</h3>
+        </div>
+    </template>
+
+    <script src="../vue/vue.js"></script>
+    <script>
+        var child = {
+            template: '#child',
+            data(){
+                return {
+                    msg: 'this is child'
+                }
+            }
+        };
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                show: true
+            },
+            components: {
+                child,
+            },
+            methods: {
+               
+            }
+
+        });
+    </script>
+</body>
+</html>
