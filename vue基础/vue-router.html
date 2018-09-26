@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-router</title>
+</head>
+<body>
+    
+    <div id="app">
+
+        <ul>
+            <router-link :to="{path: '/start/' + index}" v-for="(item,index) in msg" :key="index">{{item}}</router-link>
+        </ul>
+
+        <router-view></router-view>
+    </div>
+
+
+    <template id="start">
+        <div>
+            <p>{{msg}}</p>
+        </div>
+    </template>
+
+    <template id="about">
+        <div>
+            <p>{{msg}}</p>
+        </div>
+    </template>
+
+    <template id="project">
+        <div>
+            <p>{{msg}}</p>
+        </div>
+    </template>
+
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.js"></script>
+    <script>
+
+        var start = {
+            template: '#start',
+            data(){
+                return {
+                    msg: 'start'
+                }
+            }
+        };
+
+        var about = {
+            template: '#about',
+            data(){
+                return {
+                    msg: 'about'
+                }
+            }
+        };
+
+        var project = {
+            template: '#project',
+            data(){
+                return {
+                    msg: 'project'
+                }
+            }
+        };
+
+        var routes = [
+            {path: '/start/0',component: start},
+            {path: '/start/1',component: about},
+            {path: '/start/2',component: project}
+        ];
+        
+        var router = new VueRouter({
+            routes
+        });
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: ['开始','关于','项目']
+            },
+            methods: {
+
+            },
+            components:{
+                start,
+                about,
+                project
+            },
+            router,
+            mounted(){
+                console.log(this.$route);
+            }
+        });
+    </script>
+</body>
+</html>
