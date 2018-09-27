@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>搜索</title>
+</head>
+<body>
+    
+    <div id="app">
+        <input type="text" @change="getKey" ref="ipt">
+        <ul>
+            <li v-for="(item,index) in ary" :key="index">{{item.name}} --- {{item.age}}</li>
+        </ul>
+    </div>
+
+    <script src="../vue/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            data: {
+                msg: '',
+                ary: [
+                    {name: 'wang',age: 1},
+                    {name: 'he',age: 1},
+                    {name: 'zheng',age: 1},
+                    {name: 'huan',age: 1},
+                    {name: 'wang',age: 1},
+                    {name: 'wu',age: 1}
+                ]
+            },
+            methods: {
+                getKey(){
+                    var val = this.$refs.ipt.value;
+                    var arr = [];
+                    this.ary.forEach(item => {
+                        if(item.name.indexOf(val) > -1) {
+                            arr.push(item);
+                        }
+                    })
+                    this.ary = arr;
+                }
+            }
+        }).$mount('#app');
+    </script>
+
+</body>
+</html>
