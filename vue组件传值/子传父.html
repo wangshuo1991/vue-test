@@ -10,22 +10,27 @@
 
     <div id="app">
         <child @fn="getData"></child>
-        <h3>这是父组件 -- {{fatherMsg}}</h3>
+        {{ary}}
     </div>
-    
-    <template id="child">
+
+    <template>
         <div>
-            <p>{{msg}}</p>
+            <h3>这是子组件</h3>
         </div>
     </template>
+
     <script src="../vue/vue.js"></script>
     <script>
-
+        
         var child = {
-            template: '#child',
+            template: '#c',
             data(){
                 return {
-                    msg: 'this is child'
+                    msg: [
+                        {name: 'wangshuo',age: 27},
+                        {name: 'wangshuo',age: 27},
+                        {name: 'wangshuo',age: 27}
+                    ]
                 }
             },
             methods: {
@@ -38,20 +43,21 @@
             }
         };
 
+
         var vm = new Vue({
             data: {
-                fatherMsg: ''
+                ary : []
+            },
+            components: {
+                child
             },
             methods: {
-                getData(outerData){
-                    this.fatherMsg = outerData;
+                getData(para){
+                    this.ary = para;
                 }
             },
             created(){
                 this.getData();
-            },
-            components: {
-                child
             }
         }).$mount('#app');
     </script>

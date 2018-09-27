@@ -7,35 +7,33 @@
     <title>父传子</title>
 </head>
 <body>
-    
-    <div id="app">
-        <c :cdata="msg"></c>
-    </div>
+   <div id="app">
+        <child :cdata="msg"></child>
+   </div>
 
-    <template id="c">
-        <div>
-            <h3>{{cdata}}</h3>
-        </div>
-    </template>
+   <template id="c">
+       <div>
+           <h3>{{cdata}}</h3>
+       </div>
+   </template>
 
-    <script src="../vue/vue.js"></script>
-    <script>
-        
+   <script src="../vue/vue.js"></script>
+   <script>
+   
+    var child = {
+        template: '#c',
+        props: ['cdata']
+    };
 
-        var c = {
-            template: '#c',
-            props: ['cdata']
-        };
-
-        var vm = new Vue({
-            data: {
-                msg: 'this is root'
-            },
-            components: {
-                c
-            }
-        }).$mount('#app');
-    </script>
+    var vm = new Vue({
+        data: {
+            msg: 'father data'
+        },
+        components: {
+            child
+        }
+    }).$mount('#app');
+   </script>
 
 </body>
 </html>
