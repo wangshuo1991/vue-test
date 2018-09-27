@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>子级传递父级</title>
+</head>
+<body>
+
+    <div id="app">
+        <child @fn="getData"></child>
+        <h3>这是父组件 -- {{fatherMsg}}</h3>
+    </div>
+    
+    <template id="child">
+        <div>
+            <p>{{msg}}</p>
+        </div>
+    </template>
+    <script src="../vue/vue.js"></script>
+    <script>
+
+        var child = {
+            template: '#child',
+            data(){
+                return {
+                    msg: 'this is child'
+                }
+            },
+            methods: {
+                sendData(){
+                    this.$emit('fn',this.msg);
+                }
+            },
+            created(){
+                this.sendData();
+            }
+        };
+
+        var vm = new Vue({
+            data: {
+                fatherMsg: ''
+            },
+            methods: {
+                getData(outerData){
+                    this.fatherMsg = outerData;
+                }
+            },
+            created(){
+                this.getData();
+            },
+            components: {
+                child
+            }
+        }).$mount('#app');
+    </script>
+</body>
+</html>
