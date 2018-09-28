@@ -9,37 +9,44 @@
 <body>
     
     <div id="app">
-        <input type="text" v-model="msg">
+        <h3>Page</h3>
+        <input type="text" placeholder="请输入关键字" v-model="msg">
         <ul>
-            <li v-for="(item,index) in getKey(msg)" :key="index">{{item.name}} --- {{item.age}}</li>
+            <li v-for="(item,index) in getItem(msg)" :key="index">
+                【Name:】{{item.name}} --- 【Age:】{{item.age}}
+            </li>
         </ul>
     </div>
 
     <script src="../vue/vue.js"></script>
+
     <script>
+    
         var vm = new Vue({
             data: {
-                msg: '',
-                ary: [
-                    {name: 'wang',age: 1},
-                    {name: 'he',age: 1},
-                    {name: 'zheng',age: 1},
-                    {name: 'huan',age: 1},
-                    {name: 'wang',age: 1},
-                    {name: 'wu',age: 1}
-                ]
+                arr: [
+                    {name: 'wangshuo',age: 20},
+                    {name: 'changyuchun',age: 17},
+                    {name: 'lvbu',age: 19},
+                    {name: 'xiahouchun',age: 36},
+                    {name: 'zhanliao',age: 28},
+                    {name: 'luqian',age: 55},
+                    {name: 'liuzhijun',age: 43}
+                ],
+                msg: ''
             },
             methods: {
-                // 实时查询 主要用到了 一个 filter 的方法 和 最新 includes的方法
-                getKey(msg){
-                    return this.ary.filter(item => {
-                        if(item.name.includes(msg)) {
+                getItem(msg){
+                    return this.arr.filter(item => {
+                        if (item.name.includes(msg)) {
                             return item;
                         }
-                    })
+                    });
                 }
             }
-        }).$mount('#app');
+
+        }).$mount("#app");
+    
     </script>
 
 </body>
