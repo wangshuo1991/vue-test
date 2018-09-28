@@ -32,8 +32,7 @@
             methods: {
                 getKey(){
                     var val = this.$refs.ipt.value;
-                    var arr = [];
-                    this.ary.forEach(item => {
+                    var arr = this.ary.forEach(item => {
                         if(item.name.indexOf(val) > -1) {
                             arr.push(item);
                         }

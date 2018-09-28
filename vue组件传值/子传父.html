@@ -9,28 +9,24 @@
 <body>
 
     <div id="app">
+        father-template: --- {{fdata}}
         <child @fn="getData"></child>
-        {{ary}}
     </div>
 
-    <template>
+    <template id="c">
         <div>
-            <h3>这是子组件</h3>
+            <h3>child</h3>
         </div>
     </template>
 
     <script src="../vue/vue.js"></script>
     <script>
-        
+
         var child = {
             template: '#c',
             data(){
                 return {
-                    msg: [
-                        {name: 'wangshuo',age: 27},
-                        {name: 'wangshuo',age: 27},
-                        {name: 'wangshuo',age: 27}
-                    ]
+                   msg: 'child msg' 
                 }
             },
             methods: {
@@ -43,23 +39,23 @@
             }
         };
 
-
         var vm = new Vue({
             data: {
-                ary : []
+               fdata: '' 
             },
             components: {
                 child
             },
             methods: {
-                getData(para){
-                    this.ary = para;
+                getData(cdata){
+                    this.fdata = cdata;
                 }
             },
             created(){
                 this.getData();
             }
-        }).$mount('#app');
+        }).$mount("#app");
     </script>
+
 </body>
 </html>

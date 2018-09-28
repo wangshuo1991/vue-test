@@ -13,27 +13,29 @@
 
    <template id="c">
        <div>
-           <h3>{{cdata}}</h3>
+           <h3>child-tmeplate</h3>
+           <p>this is child From father --- {{cdata}}</p>
        </div>
    </template>
 
    <script src="../vue/vue.js"></script>
    <script>
-   
     var child = {
         template: '#c',
-        props: ['cdata']
+        props: {
+            cdata: {
+                type: String
+            }
+        }
     };
-
     var vm = new Vue({
         data: {
-            msg: 'father data'
+            msg: 'father-message'
         },
         components: {
-            child
+            child,
         }
-    }).$mount('#app');
+    }).$mount("#app");
    </script>
-
 </body>
 </html>
