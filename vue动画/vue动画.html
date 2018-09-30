@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>vue动画</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.5.2/animate.css">
+    <style>
+        #app {
+            width: 600px;
+            margin: 50px auto;
+        }
+    </style>
 </head>
 <body>
     
@@ -13,9 +19,9 @@
         <button @click="show=!show">click</button>
         <transition 
         name="my-ant" 
-        enter-active-class="animated bounceInLeft" 
-        leave-active-class="animated bounceOutRight" 
-        :duration="{enter: 300,leave: 350}">
+        enter-active-class="animated zoomIn" 
+        leave-active-class="animated zoomOut" 
+        :duration="{enter: 300,leave: 400}">
             <child v-show="show"></child>
         </transition>
         
