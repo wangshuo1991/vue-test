@@ -19,8 +19,8 @@
         <button @click="show=!show">click</button>
         <transition 
         name="my-ant" 
-        enter-active-class="animated zoomIn" 
-        leave-active-class="animated zoomOut" 
+        enter-active-class="animated zoomInLeft" 
+        leave-active-class="animated zoomOutRight" 
         :duration="{enter: 300,leave: 400}">
             <child v-show="show"></child>
         </transition>
