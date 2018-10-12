@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>子级改变父级数据</title>
+</head>
+<body>
+
+    <div id="app">
+        <child :cary="fary"></child> 
+    </div>
+    
+    <template id="c">
+        <div>
+            <p>this is child</p>
+            
+            <input type="button" value="child-click" @click="changeFatherData">
+            
+        </div>
+    </template>
+
+    <script src="../vue/vue.js"></script>
+    <script>
+    var child = {
+        template: "#c",
+        props: {
+            cary: {
+                type: Object           
+            }
+        },
+        methods: {
+            changeFatherData(){
+                if(!this.cary.count){
+                    Vue.set(this.cary,"count",1);
+                }else{
+                    this.cary.count ++;
+                    console.log(this.cary.count);
+                }
+                
+            }
+        },
+        created () {
+            console.log('created' + this.cary.count);
+        },
+        updated () {
+            console.log('updated' + this.cary.count);
+        }
+    };
+    
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            fary: {"name":"wangshuo","age": 11}
+           
+        },
+        components: {
+            child
+        }
+    });
+
+    </script>
+</body>
+</html>
