@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>watch监控了几次</title>
+</head>
+<body>
+    
+    <div id="app">
+        <input type="text" v-model="ipt_msg">
+        <input type="button" value="click and save" @click="save">
+    </div>
+
+
+    <script src="vue/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            data: {
+                ipt_msg: '',
+                ary: [],
+                obj: {}
+            },
+            methods: {
+                save(){                   
+                    let msg = this.ipt_msg;
+                    this.ary.push(msg);
+                    this.obj[msg]=msg;
+                    console.log(this.ary,this.obj);
+                    this.ipt_msg = "";
+                }
+            },
+            watch: {
+                ary: () => {
+                    console.log(`ary changed`);
+                }
+            }
+
+
+        }).$mount("#app");
+    </script>
+</body>
+</html>
