@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue双向绑定原理 - object.defineProperty</title>
+</head>
+<body>
+
+    <input type="text" id="txt">
+    
+    <p id="txtContainer"></p>
+    
+    <script src="../vue/vue.js"></script>
+    <script>
+        var obj = {name: ''};
+        Object.defineProperty(obj,'name',{
+            get () {
+                return obj;
+            },
+            set (val) {
+                document.getElementById("txtContainer").innerHTML = val;
+            }
+        });
+        console.log(obj.name);
+        document.addEventListener('keyup',function (e) {
+            if(e.target.tagName === 'INPUT'){
+                obj.name = e.target.value;
+            }
+        },false);
+
+
+
+
+    </script>
+</body>
+</html>
