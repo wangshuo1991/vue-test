@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表跳转</title>
+</head>
+<body>
+    
+
+    <div id="app">
+        <div>
+
+            <ul>
+                <li v-for="(item,index) in ary" :key="index" @click="select(item)">
+                    <span>{{item.name}}</span> ---- <span>{{item.age}}</span> ---- <span>{{item.from}}</span>
+                </li>
+            </ul>
+        </div>
+
+        <c :j="j" ref="c"></c>
+
+    </div>
+
+    <template id="c">
+        <div class="c-wrapper" v-if="show">
+            <p>{{j.name}}</p>
+        </div>
+    </template>
+
+    <script src="../vue/vue.js"></script>
+    <script>
+
+        let c = {
+            template: '#c',
+            data(){
+                return {
+                    show: false
+                }
+            },
+            props: {
+                j: {
+                    type: Object
+                }
+            },
+            methods: {
+                showFn(){
+                    this.show = true;
+                }
+            }
+        };
+
+        new Vue({
+            el: '#app',
+            data: {
+                ary: [
+                    {name: 'liudaxia',age: 27,from: 'Henan'},
+                    {name: 'hanxin',age: 32,from: 'sichuan'},
+                    {name: 'lanyu',age: 27,from: 'Anhui'},
+                    {name: 'changyuchun',age: 27,from: 'Zh'},
+                    {name: 'qitian',age: 27,from: 'cdl'}
+                ],
+                j: {}
+            },
+            methods: {
+                select(item){
+                   this.j = item;
+                   this.$refs.c.showFn();
+                }
+            },
+            components: {
+                c
+            }
+        });
+    </script>
+</body>
+</html>
