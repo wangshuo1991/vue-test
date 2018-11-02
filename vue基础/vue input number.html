@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue input</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in ary">
+               <p>{{item.name}}</p> 
+               <input type="text" v-model.number="item.num">
+            </li>
+        </ul>
+    </div>
+    <script src="../vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                ary: [
+                    {num: 1,name: 'ws'},
+                    {num: 1,name: 'ws'},
+                    {num: 1,name: 'ws'},
+                    {num: 1,name: 'ws'}
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

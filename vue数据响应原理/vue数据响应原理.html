@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数据响应原理</title>
+</head>
+<body>
+    
+    <div id="app">
+        <p>{{a.name}}</p>
+        <p>这是数组 --- <span>{{b}}</span></p>
+    </div>
+
+
+    <script src="../vue/vue.js"></script>
+    <script>
+
+        // 实现对象类型数据 变化的方法
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                a: {},
+                b: [1,2,3]
+            }
+        });
+        // vm.a.name='ws'; -> 这一种没什么用
+
+        // 用 $set 的方式可以处理
+        //vm.$set(vm.a,'name','ws'); // 实现了对象数据类型的改变
+
+        // 用 直接赋值的方式可以处理
+        vm.a = {name: 'ws'};
+
+
+        // 实现数组数据类型 变化的方法
+        
+        // 这是第一种 直接赋值  直接操作
+        vm.b = [3,4,5];
+
+        vm.b[0] = 100;
+
+        vm.b.length -= 2;
+        
+        // 用一些方法  pop push shift unshift reverse
+        vm.b.push(1000);
+
+        vm.b.reverse();
+        
+        // 使用map filter 等方法时 因为是重新返回了一个新的数组 ，注意要把新的数组赋值给data中定义的数组
+        vm.b = vm.b.map(item=>item*=3);
+
+        
+    </script>
+</body>
+</html>
