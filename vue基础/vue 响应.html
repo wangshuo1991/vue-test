@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue 响应式</title>
+</head>
+<body>
+    
+    <div id="app">
+        <p>{{num}} --- 200</p>
+
+        <button @click="add">add</button>
+
+        <p>总价格：<span>{{total}}</span></p>
+    </div>
+
+    <script src="../vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                num: 1
+            },
+            methods: {
+                add(){
+                    this.total = 1000;
+                }
+            },
+            computed:{
+                total(){
+                    return 200*this.num;
+                },
+
+
+            }
+        });
+    </script>
+</body>
+</html>
