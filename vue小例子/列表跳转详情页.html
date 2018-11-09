@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表跳转详情页</title>
+    <style>
+    
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul,li {
+            list-style: none;
+        }
+
+        .list-container {
+            width: 1000px;
+            margin: 30px auto;
+        }
+
+        .list-container li {
+            width: 998px;
+            height: 38px;
+            border: 1px solid #d7d7d7;
+        }
+
+        .list-container li div {
+            width: 33.33%;
+            float: left;
+            line-height: 40px;
+        }
+
+
+        .detail {
+            position: fixed;
+            top: 0;
+            width: 998px;
+            height: 500px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #d7d7d7;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="list-container">
+            <ul>
+                <li 
+                v-for="list in listAry" 
+                :key="list.id">
+                    <router-link 
+                    :to="{path:'/detail',query:{ id:list.id }}"
+                    @click.native="getRouteId" 
+                    tag="a">
+                        <div>{{list.company}}</div>
+                        <div>{{list.time | timeFormat("yyyy-mm-dd")}}</div>
+                        <div>{{list.code}}</div>
+                    </router-link>
+                </li>
+            </ul>
+        </div>
+
+        <router-view></router-view>
+    </div>
+
+    <template id="detail">
+        <div class="detail">
+            <p>this is details</p>
+        </div>
+    </template>
+
+    <script src="../vue/vue.js"></script>
+    <script src="../vue/vue-router.js"></script>
+    <script>
+        
+        let detail = {
+            template: '#detail',
+            data(){
+                return {
+                    id: this.$route.query,
+                }
+            },
+            methods: {
+                getInfo(){
+                    console.log(this.id);
+                }
+            },
+            created(){
+                this.getInfo();
+            }
+        };
+        
+        //定义路由
+        let router = new VueRouter({
+            routes: [
+                {path: '/detail',component: detail}
+            ],
+        });
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                listAry: [
+                    {id: '01',company: 'www.baidu.com',time: new Date(),code: 2018110801},
+                    {id: '02',company: 'www.sina.com',time: new Date(),code: 2018110802},
+                    {id: '03',company: 'www.alibaba.com',time: new Date(),code: 2018110803},
+                    {id: '04',company: 'www.google.com',time: new Date(),code: 2018110804},
+                    {id: '05',company: 'www.163.com',time: new Date(),code: 2018110805}
+                ],
+                id: ""
+            },
+            filters: {
+                timeFormat(target,para1){
+                     // yyyy-mm-dd
+                    var y = target.getFullYear();
+                    var m = (target.getMonth() + 1).toString().padStart(2,'0');
+                    var d = target.getDate().toString().padStart(2,'0');
+                    var hh = target.getHours().toString().padStart(2,'0');
+                    var mm = target.getMinutes().toString().padStart(2,'0');
+                    var sec = target.getSeconds().toString().padStart(2,'0');
+                    
+                    // return y+'-'+ m +'-'+ d;
+
+                    // es6 模板字符串 替代原来的字符串拼接
+                    if(para1 && para1.toLowerCase() === "yyyy-mm-dd"){  // ->短路运算 如果你存在 在执行后边的语句 不存在就算了
+                        return `${y}-${m}-${d}`;
+                    }else {
+                        return `${y}-${m}-${d} ${hh}:${mm}:${sec}`;
+                    }
+                }
+            },
+            components: {
+                detail
+            },
+            router,
+            methods: {
+                getRouteId(){
+                    this.id = this.$route.query.id;
+                }
+            },
+            
+        });
+    </script>
+</body>
+</html>
