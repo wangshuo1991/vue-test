@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>删除列表</title>
+</head>
+<body>
+    
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in ary" :key="index">
+                <span>{{item.ltd}}</span>
+                <span>{{item.https}}</span>
+                <span @click="deleteItem(item)">delelte</span>
+            </li>
+        </ul> 
+    </div>
+
+    <script src="../vue/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                ary: [
+                    {ltd: 'Google',https: 'www.google.com'},
+                    {ltd: 'BaiDu',https: 'www.baidu.com'},
+                    {ltd: 'Sina',https: 'www.sina.com'},
+                    {ltd: 'Alibaba',https: 'www.alibaba.com'},
+                ]
+            },
+            methods: {
+                deleteItem(item){
+                    this.ary = this.ary.filter(ele=>ele!=item);
+                }
+            }
+        });
+    
+    </script>
+</body>
+</html>
