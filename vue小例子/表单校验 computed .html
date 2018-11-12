@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单校验实时 - computed</title>
+</head>
+<body>
+
+    <div id="app">
+
+        <input type="password" v-model="a"><span>{{err}}</span>
+        <!-- 根据输入内容 计算出一个错误信息  实时显示 -->
+
+
+    </div>
+
+    <script src="../vue/vue.js"></script>
+    <script>
+  
+        let vm = new Vue({
+            el: '#app',
+            data:{
+                a: ""
+            },
+            computed: {
+                err(){
+                    if(this.a.length<3){
+                        return "The length less than 3";
+                    }
+                    if(this.a.length>10){
+                        return "The length more than 10";
+                    }
+                    return "";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

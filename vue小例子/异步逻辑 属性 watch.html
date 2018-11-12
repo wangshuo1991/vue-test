@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单校验实时 (异步) - watch</title>
+</head>
+<body>
+
+    <div id="app">
+
+        <input type="password" v-model="a"><span>{{msg}}</span>
+        <!-- 根据输入内容 计算出一个错误信息  实时显示 -->
+
+
+    </div>
+
+    <script src="../vue/vue.js"></script>
+    <script>
+  
+        let vm = new Vue({
+            el: '#app',
+            data:{
+                a: "",
+                msg: ""
+            },
+            watch: {
+                a(newval,oldval){  // 对于 异步操作，watch是支持的，而大多数情况下 是用computed
+                    window.setTimeout(()=>{
+                        if(newval.length<3){
+                            return this.msg="the length is too short";
+                        }
+
+                        if(newval.length>6){
+                            return this.msg="the length is too long";
+                        }
+                        this.msg="";
+                    },500);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
