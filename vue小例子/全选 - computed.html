@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>全选</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        ul,li {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+        <div class="check-box">
+            <input type="checkbox" v-model="checkboxFlag">
+        </div>
+        <div class="pro-box">
+            <ul>
+                <li v-for="(product,index) in ary">
+                    <input type="checkbox" v-model="product.isSelected">
+                    <span>{{product.proName}}</span>
+                    <span>{{product.proCount}}</span>
+                    <span>{{product.proPrice}}</span>
+                </li>
+            </ul>
+            <p></p>
+        </div>
+    </div>
+
+    <script src="../vue/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                ary: [
+                    {isSelected: true,proName: 'apple',proCount: 3.2,proPrice: 6.99},
+                    {isSelected: true,proName: 'purple',proCount: 2.9,proPrice: 2.99},
+                    {isSelected: true,proName: 'orange',proCount: 3.5,proPrice: 7.99},
+                    {isSelected: true,proName: 'pear',proCount: 2.8,proPrice: 1.99},
+                    {isSelected: true,proName: 'banana',proCount: 2.3,proPrice: 3.99}
+                ]
+            },
+            computed:{
+                checkboxFlag:{
+                    get(){
+                        return this.ary.every(ele=>ele.isSelected);
+                    },
+                    set(val){
+                        this.ary.forEach(ele=>ele.isSelected=val);
+                    }
+                },
+
+            }
+
+        });
+    </script>
+</body>
+</html>
