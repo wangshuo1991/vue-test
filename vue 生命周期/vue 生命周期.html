@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>生命周期</title>
+</head>
+<body>
+    
+    <div id="app">
+        <p ref="myp">{{a}}</p>
+        <button @click="change">click me</button>
+    </div>
+
+
+    <script src="../vue/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                a: 1
+            },
+            methods: {
+                change(){
+                    this.a = 10000;
+                    this.$nextTick(()=>{ // 数据更新了 但是dom还没更新 所以要有nexttick 异步处理
+                        console.log(this.$refs.myp.innerHTML);
+                    })
+                }
+            }
+            
+        });
+    </script>
+</body>
+</html>

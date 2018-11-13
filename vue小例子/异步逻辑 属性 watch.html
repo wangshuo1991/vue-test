@@ -27,7 +27,7 @@
             },
             watch: {
                 a(newval,oldval){  // 对于 异步操作，watch是支持的，而大多数情况下 是用computed
-                    window.setTimeout(()=>{
+                    window.setTimeout(()=>{ 
                         if(newval.length<3){
                             return this.msg="the length is too short";
                         }
