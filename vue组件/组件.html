@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件</title>
+</head>
+<body>
+
+    <div id="app">
+        <p>{{msg}}</p>
+        <c></c>
+    </div>
+
+
+    <template id="c">
+        <div>
+            <p>this is a demo</p>
+        </div>
+    </template>
+
+    <script src="../vue/vue.js"></script>
+    <script>
+    
+        // 组件化开发 ： 组件通常分为两类： 一是 页面就是组件  二是 将复用的部分抽离出来 基础组件
+
+        // 一个自定义的标签 就会被vue看成是一个 组件
+
+         let c = {
+            template: '#c',
+            date(){
+                return {
+
+                }
+            }
+        };
+
+        let vm = new Vue({
+            data: {
+                msg: 'app container'
+            },
+            components: {
+                c,
+            }
+        }).$mount('#app');
+
+       
+
+    </script>
+    
+</body>
+</html>
