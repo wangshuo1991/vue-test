@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>child-methods</title>
+</head>
+<body>
+    <div id="app">
+        <load ref="loading"></load>
+    </div>
+
+    <template id="load">
+        <div v-show="flag">
+            数据正在加载中，请稍候...
+        </div>
+    </template>
+
+    <script src="../vue/vue.js"></script>
+    <script>
+        
+        let load = {
+            template: '#load',
+            data(){
+                return {
+                    flag: true
+                }
+            },
+            methods: {
+                hide () {
+                    this.flag = false;
+                }
+            }
+        };
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            components: {
+                load,
+            },
+            mounted(){
+
+                setTimeout(()=>{
+                    this.$refs.loading.hide();                    
+                },2000);
+            }
+        });
+    
+    </script>
+</body>
+</html>
