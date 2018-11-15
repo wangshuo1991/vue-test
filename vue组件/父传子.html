@@ -8,25 +8,40 @@
 </head>
 <body>
    <div id="app">
-        <child :cdata="msg"></child>
+        <child :ls="list"></child>
    </div>
 
-   <template id="c">
+   <template id="child">
        <div>
-           <h3>child-tmeplate</h3>
-           <p>this is child From father --- {{cdata}}</p>
+           <p>{{ls.name}}</p>
+           <p>{{ls.property}}</p>
        </div>
    </template>
 
    <script src="../vue/vue.js"></script>
    <script>
+    
     var child = {
-        template: '#c',
-        props: ['cdata']
+        template: '#child',
+        data(){
+            return {
+
+            }
+        },
+        props: {
+            ls: {
+                type: Object
+            }
+        }
     };
+
+
     var vm = new Vue({
         data: {
-            msg: 'father-message'
+            list: {
+                name: 'father',
+                property: "object"
+            }
         },
         components: {
             child,
