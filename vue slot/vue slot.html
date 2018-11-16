@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>slot</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    
+
+    <div id="app">
+        
+        
+        <panel type="warning" @show-title="reciveTitle">
+            <div slot="title">Waring Alert</div>
+            <div slot="content">
+                <p class="text-warning">Found some error in your article,Please check it out and make sure it is correct.</p>
+            </div>
+            <div slot="footer">
+                <button class="btn btn-primary">Sure</button>
+            </div>
+        </panel>
+
+
+    </div>
+
+    <template id="panel">
+        <div class="panel" :class="[color]">
+            <div class="panel-heading" ref="heading">
+                <slot name="title"></slot>
+            </div>
+            <div class="panel-body">
+                <slot name="content"></slot>
+            </div>
+            <div class="panel-footer">
+                <slot name="footer"></slot>
+                <button @click="show">show title</button>
+            </div>
+        </div>
+    </template>
+
+
+    <script src="../vue/vue.js"></script>
+    <script>
+
+        let panel = {
+            template: '#panel',
+            props: {
+                type: {
+                    type: String,
+                    default: 'default'
+                }
+            },
+            computed:{
+                color(){
+                    return "panel-" + this.type;
+                }
+            },
+            methods: {
+                show () {
+                    this.$emit("show-title",this.$refs.heading.innerText);
+                }
+            }
+        };
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            components: {
+                panel,
+            },
+            methods: {
+                reciveTitle(val){
+                    alert(val);
+                }
+            }
+        });
+
+
+    </script>
+</body>
+</html>
