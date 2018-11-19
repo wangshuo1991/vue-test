@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .active {
+        color: #096;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <router-link :to="{name: 'article',params: {c:1,a:1}}" tag="button">文章一</router-link>
+        <router-link to="/article/2/2" tag="button">文章二</router-link>
+        <router-link to="/article/3/3" tag="button">文章三</router-link>
+        <router-view></router-view>
+    </div>
+
+    <template id="article">
+        <div>
+            <p>这里是第{{$route.params.c}}篇文章</p>
+        </div>
+    </template>
+    <script src="./vue/vue.js"></script>
+    <script src="./vue/vue-router.js"></script>
+    <script>
+
+        let article = {
+            template: '#article',
+        };
+
+        let routes = [
+            {path: '/article/:c/:a',component: article,name: 'article'},
+        ];
+
+        let router = new VueRouter({
+            routes,
+            linkActiveClass: 'active'
+        });
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            router
+        });
+    </script>
+</body>
+</html>
