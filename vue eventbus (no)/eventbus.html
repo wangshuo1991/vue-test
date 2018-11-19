@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>eventbus 不用</title>
+</head>
+<body>
+    
+
+    <div id="app">
+        <aa></aa>
+        <bb></bb>
+    </div>
+
+
+    <template id="aa">
+        <div>
+            <p>Template A color --- {{acolor}}</p>
+            <button @click="change1">change Brother's color ↓</button>
+        </div>
+    </template>
+
+    <template id="bb">
+        <div>
+            <p>Template B color --- {{acolor}}</p>
+            <button @click="change">change Brother's color ↑</button>
+        </div>
+    </template>
+
+    <script src="../vue/vue.js"></script>
+    <script>
+
+        // 兄弟组件之间的通信 eventbus 但是一般不用
+
+        let eventbus = new Vue;
+
+        let aa = {
+            template: '#aa',
+            data(){
+                return {
+                    acolor: '我是红色',
+                    old: '我是红色'
+                }
+            },
+            created(){
+                eventbus.$on('changeGreen',(val)=>{
+                    this.acolor = val;
+                });
+            },
+            methods: {
+                change1(){
+                    eventbus.$emit('changeRed',this.old);
+                }
+            }
+        };
+
+        let bb = {
+            template: '#bb',
+            data(){
+                return {
+                    acolor: '我是绿色',
+                    old: '我是绿色'
+                }
+            },
+            methods: {
+                change(){
+                    eventbus.$emit('changeGreen',this.old);
+                }
+            },
+            created(){
+                eventbus.$on('changeRed',(val)=>{
+                    this.acolor = val;
+                });
+            }
+            
+        };
+    
+        let vm = new Vue({
+            el: '#app',
+            components: {
+                aa,bb
+            }
+        });
+    </script>
+
+</body>
+</html>
