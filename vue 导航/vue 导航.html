@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>导航</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css">
+    <style>
+    
+      
+
+      
+    </style>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/home">Home</router-link>
+        <router-link to="/list">List</router-link>
+        <transition mode="out-in">
+            <router-view></router-view>
+        </transition>
+        
+    </div>
+
+    <template id="home">
+        <div>
+            this is home
+        </div>
+    </template>
+
+    <template id="list">
+        <div>
+            this is list
+        </div>
+    </template>
+
+    <template id="not">
+        <div>
+            sorry,not found
+        </div>
+    </template>
+
+    <script src="../vue/vue.js"></script>
+    <script src="../vue/vue-router.js"></script>
+    <script>
+        
+        let home = {
+            template: '#home',
+            data(){
+                return {
+
+                }
+            }
+        };
+
+        let list = {
+            template: '#list',
+            data(){
+                return {
+                    
+                }
+            }
+        };
+
+        let not = {
+            template: '#not',
+            data(){
+                return {
+                    
+                }
+            }
+        };
+
+        let routes = [
+            {path: '/home',component: home},
+            {path: '/list',component: list},
+            {path: '/',redirect: '/home'},
+            {path: '*',component: not},
+        ];
+
+        let router = new VueRouter({
+            routes,
+        });
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            router,
+            watch: {
+                '$route.path':(val)=>{
+                    console.log(val);
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
