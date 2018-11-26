@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>generator</title>
+</head>
+<body>
+    <!-- generator    -->
+    <script>
+        // generator 本质上是在 yield 出现的地方 将原来的代码 生成几个小的函数 通过 generator.next() 方法分别执行这些小函数
+
+        function *show () {
+            alert(1);
+
+            yield;
+
+            alert(2)
+        }
+
+        show().next(); // -> alert(1) 相当于 yield 生成函数 function show_1 () {alert(1)}
+        show().next(); // -> alert(2) 相当于 yield 生成函数 function show_2 () {alert(2)}
+
+    
+    </script>
+</body>
+</html>
