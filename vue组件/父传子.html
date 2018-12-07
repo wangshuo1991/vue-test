@@ -7,30 +7,38 @@
     <title>父传子</title>
 </head>
 <body>
-   <div id="app">
-        <child :ls="list"></child>
-   </div>
+  
+    <div id="app">
 
-   <template id="child">
-       <div>
-           <p>{{ls.name}}</p>
-           <p>{{ls.property}}</p>
-       </div>
-   </template>
+        <child :d="fd">
+            <div slot="title">title</div>
+
+            <div slot="content">content</div>
+        </child>
+    </div>
+
+    <template id="c">
+        <div>
+            this is child - {{d}}
+            <slot name="title"></slot>
+            <slot name="content">content</slot>
+        </div>
+    </template>
 
    <script src="../vue/vue.js"></script>
    <script>
     
     var child = {
-        template: '#child',
-        data(){
+        template: '#c',
+        data () {
             return {
 
-            }
+            } 
         },
         props: {
-            ls: {
-                type: Object
+            d:{
+                type: String,
+                default: 'data'
             }
         }
     };
@@ -38,13 +46,10 @@
 
     var vm = new Vue({
         data: {
-            list: {
-                name: 'father',
-                property: "object"
-            }
-        },
+            fd: 'father data'
+        },    
         components: {
-            child,
+            child
         }
     }).$mount("#app");
    </script>
