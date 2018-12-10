@@ -9,50 +9,51 @@
 <body>
 
     <div id="app">
-        <child @fn="getData"></child>
+        
         <p>{{fdata}}</p>
+        <child @cn="send"></child>
     </div>
 
-    <template id="c">
+    <tempalte id="c">
         <div>
-            <h3>child</h3>
+            <p>child component</p>
         </div>
-    </template>
-
+    </tempalte>
     <script src="../vue/vue.js"></script>
     <script>
 
-        var child = {
+        let child = {
             template: '#c',
-            data(){
+            data () {
                 return {
-                   msg: 'child msg' 
+                    c: 'child data'    
                 }
             },
             methods: {
-                sendData() {
-                    this.$emit('fn',this.msg);
+                cn(){
+                    this.$emit('cn',this.c)
                 }
             },
             created(){
-                this.sendData();
+                this.cn()
             }
-        };
+        }
 
-        var vm = new Vue({
+        let vm = new Vue({
             data: {
-               fdata: '' 
+                fdata: ''
             },
             components: {
                 child
             },
             methods: {
-                getData(val) {
-                    this.fdata = val;
+                send (val) {
+                    console.log(val);
+                    this.fdata = val
                 }
             },
             created(){
-                this.getData();
+                this.send()
             }
         }).$mount("#app");
     </script>
