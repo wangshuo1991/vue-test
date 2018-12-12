@@ -9,16 +9,16 @@
 <body>
 
     <div id="app">
-        
-        <p>{{fdata}}</p>
-        <child @cn="send"></child>
+        <child @cn="fn"></child>
+        <p>{{f}}</p>
     </div>
 
-    <tempalte id="c">
+    <template id="c">
         <div>
-            <p>child component</p>
+            <p>this is child</p>
         </div>
-    </tempalte>
+    </template>
+
     <script src="../vue/vue.js"></script>
     <script>
 
@@ -26,34 +26,33 @@
             template: '#c',
             data () {
                 return {
-                    c: 'child data'    
+                    c: 'child data'
                 }
             },
             methods: {
-                cn(){
-                    this.$emit('cn',this.c)
+                f () {
+                    this.$emit('cn',this.c);
                 }
             },
-            created(){
-                this.cn()
+            created () {
+                this.f();
             }
         }
 
         let vm = new Vue({
             data: {
-                fdata: ''
+                f: ''
             },
             components: {
                 child
             },
             methods: {
-                send (val) {
-                    console.log(val);
-                    this.fdata = val
+                fn (val) {
+                    this.f = val;
                 }
             },
-            created(){
-                this.send()
+            created () {
+                this.fn();
             }
         }).$mount("#app");
     </script>

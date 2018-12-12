@@ -7,50 +7,52 @@
     <title>父传子</title>
 </head>
 <body>
-  
+    
     <div id="app">
-
-        <child :d="fd">
-            <div slot="title">title</div>
-            <div slot="content">content</div>
-        </child>
+        <p>this is father</p>
+        <child :ary="ary"></child>
     </div>
 
     <template id="c">
         <div>
-            this is child - {{d}}
-            <slot name="title"></slot>
-            <slot name="content"></slot>
+            <p>this is child component</p>
+            <ul>
+                <li v-for="(item,index) in ary" :key="index">
+                    <span>{{item.name}} --- {{item.age}}</span>
+                </li>
+            </ul>
         </div>
     </template>
-
-   <script src="../vue/vue.js"></script>
-   <script>
-    
-    var child = {
-        template: '#c',
-        data () {
-            return {
-
-            } 
-        },
-        props: {
-            d:{
-                type: String,
-                default: 'data'
+    <script src="../vue/vue.js"></script>
+    <script>
+        let child = {
+            template: '#c',
+            props: {
+                ary: {
+                    type: Array,
+                    default: []
+                }
             }
-        }
-    };
-
-
-    var vm = new Vue({
-        data: {
-            fd: 'father data'
-        },    
-        components: {
-            child
-        }
-    }).$mount("#app");
-   </script>
+        };
+        
+        let vm = new Vue({
+            data: {
+                ary: [
+                    {
+                        name: 'ws',
+                        age: 27
+                    },
+                    {
+                        name: 'ed',
+                        age: 30
+                    }
+                ]
+            },
+            components: {
+                child
+            }
+        }).$mount('#app');
+    
+    </script>
 </body>
 </html>
