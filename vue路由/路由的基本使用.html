@@ -49,7 +49,7 @@
             template: '<h3>这是注册组件</h3>'
         };
 
-        var routerObj = new VueRouter({
+        var router = new VueRouter({
             routes: [
                 {path: '/',redirect: '/login'},
                 {path: '/login',component: login},
@@ -62,7 +62,7 @@
             data: {
                 
             },
-            router: routerObj,
+            router,
         }).$mount('#app');
         
     </script>
