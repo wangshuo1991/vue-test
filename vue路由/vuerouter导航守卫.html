@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>导航守卫</title>
+
+</head>
+<body>
+    
+    <div id="app">
+        <router-view></router-view>
+    </div>
+
+    <template id="c1">
+        <div>
+            {{ d }}
+        </div>
+    </template>
+
+    <template id="c2">
+        <div>
+            {{ d }}
+        </div>
+    </template>
+
+    <template id="c3">
+        <div>
+            {{ d }}
+        </div>
+    </template>
+
+
+
+    <script src="./vue/vue.js"></script>
+    <script src="./vue/vue-router.js"></script>
+    <script>
+
+        let c1 = {
+            template: '#c1',
+            data () {
+                return {
+                    d: 'c1 - 登录'
+                }
+            }
+        }
+
+        let c2 = {
+            template: '#c2',
+            data () {
+                return {
+                    d: 'c2 - 主页'
+                }
+            }
+        }
+
+        let c3 = {
+            template: '#c3',
+            data () {
+                return {
+                    d: 'c3 - 内容'
+                }
+            }
+        }
+
+        let router = new VueRouter({
+            routes: [
+                {path: '/c1',component: c1,name: 'c1'},
+                {path: '/c2',component: c2,name: 'c2'},
+                {path: '/c3',component: c3,name: 'c3'},
+                {path: '/',redirect: '/c1'}
+            ]
+        });
+
+        router.beforeEach((to, from, next) => {
+
+            if (to.name === 'c1') {
+                console.log('我是c2');
+                router.push({name: 'c2'});
+            }   
+            next();
+        })
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            components: {
+                c1,c2,c3
+            },
+            router
+        });
+
+    </script>
+</body>
+</html>
