@@ -69,17 +69,33 @@
                 {path: '/c1',component: c1,name: 'c1'},
                 {path: '/c2',component: c2,name: 'c2'},
                 {path: '/c3',component: c3,name: 'c3'},
-                {path: '/',redirect: '/c1'}
+                {path: '/',redirect: '/c2'}
             ]
         });
 
         router.beforeEach((to, from, next) => {
 
-            if (to.name === 'c1') {
-                console.log('我是c2');
-                router.push({name: 'c2'});
-            }   
-            next();
+            let flag = false;
+
+            if (flag) {
+                console.log('success');
+                next()
+            } else {
+
+                console.log(to.name);
+
+                if (to.name === 'c2') {
+                    console.log('1');
+                    next('/c1');
+                } else {
+                    console.log('2');
+                    next();
+                }
+            }
+
+            
+            
+
         })
 
         let vm = new Vue({
