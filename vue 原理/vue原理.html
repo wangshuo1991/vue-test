@@ -10,20 +10,22 @@
     
     <script>
     
-        let json = {};
+        let json = {a:20};
 
         let p = new Proxy(json,{
             get(){
                 console.log('get data');
             },
-            set(){
-                console.log('set data');
+            set(target, key, value, receiver){
+                console.log('set');
+                return Reflect.set(target, key, value, receiver);
             }
         });
 
+        console.log(p.a);
+
         p.a = 10;// -> set data
 
-        alert(p.a); // -> undefined   console.log -> 'get data';
 
         
 
