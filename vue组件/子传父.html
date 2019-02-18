@@ -10,7 +10,7 @@
 
     <div id="app">
         <child @cn="fn"></child>
-        <p>{{f}}</p>
+        <p>{{fdata}}</p>
     </div>
 
     <template id="c">
@@ -30,9 +30,9 @@
                 }
             },
             methods: {
-                f () {
-                    this.$emit('cn',this.c);
-                }
+               f () {
+                   this.$emit('cn',this.c);
+               }
             },
             created () {
                 this.f();
@@ -41,14 +41,14 @@
 
         let vm = new Vue({
             data: {
-                f: ''
+                fdata: ''
             },
             components: {
                 child
             },
             methods: {
                 fn (val) {
-                    this.f = val;
+                    this.fdata = val;
                 }
             },
             created () {
