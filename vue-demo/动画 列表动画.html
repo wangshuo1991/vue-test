@@ -40,12 +40,10 @@
             <input type="button" value="Add" @click="add">
         </div>
 
-
         <ul>
             <transition-group appear tag="ul">
                 <li v-for="(item,index) in list" :key="item.id" @click="del(index)">{{index+1}} - {{item.name}}</li>
             </transition-group>
-            
         </ul>
 
     
