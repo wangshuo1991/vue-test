@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>defineproperty</title>
+</head>
+<body>
+    
+    <script>
+        
+        {
+            // defineProperty
+
+            let student = {};
+
+            Object.defineProperty(student,'name',{
+                
+                enumerable: true,
+                set (val) { // student.name 赋值的时候会调用此方法
+                    console.log(val);
+                },
+                get () { // 获取student.name 会调此方法
+                    return 'changed'
+                }
+            }); 
+
+            
+            console.log(student.name);
+            
+
+
+
+
+
+
+        }
+    
+    </script>
+
+</body>
+</html>
