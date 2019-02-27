@@ -19,7 +19,7 @@ function Cue (options={}) {
     }
 
     // 实现computed
-    initComputed.call(this);
+    initComputed.call(this); 
 
     new Compile(options.el,this);
 
