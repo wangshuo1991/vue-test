@@ -3,7 +3,7 @@
 // [fn1,fn2,fn3]
 
 //绑定的方法 都有一个update属性
-function Dep () {
+/* function Dep () {
     this.subs = [];
 }
 
@@ -31,13 +31,52 @@ let watcher = new Watcher(function () {
 });
 
 let dep = new Dep();
+
 dep.addSub(watcher); // 将watcher 放到了数组中 {watcher.update}
 dep.addSub(watcher); // 将watcher 放到了数组中 {watcher.update}
 dep.addSub(watcher); // 将watcher 放到了数组中 {watcher.update}
 
 console.log(dep.subs);
 
-dep.nodtify();
+dep.nodtify(); */
+
+function Dep () { // 发布的构造函数
+    this.subs = [];
+}
+
+Dep.prototype.addSubs = function (sub) {
+    this.subs.push(sub);
+}
+
+Dep.prototype.notify = function () {
+    this.subs.forEach(sub=>{
+        sub.update();
+    })
+}
+
+function Watcher (fn) {
+    this.fn = fn;
+}
+
+Watcher.prototype.update = function () {
+    this.fn();
+}
+
+let watcher1 = new Watcher(function () {
+    console.log('watcher1 function');
+});
+
+let watcher2 = new Watcher(function () {
+    console.log('watcher2 function');
+});
+
+let dep = new Dep();
+
+dep.addSubs(watcher1);
+dep.addSubs(watcher2);
+
+
+dep.notify();
 
 
 
