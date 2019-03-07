@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>nexttick</title>
+</head>
+<body>
+
+    <div id="app">  
+        <h2>{{name}}</h2>
+        <div v-if="flag" ref="div">content</div>
+        <button @click="fn">click</button>
+    </div>
+
+    <script src="../vue/vue.js"></script>
+    <script>
+    
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                name: 'ws',
+                flag: false
+            },
+            methods: {
+                fn () {
+                    this.flag = true;
+                    this.$nextTick(function () {
+                        console.log(this.$refs.div.innerHTML);
+                    })
+                }
+            }
+        });
+    
+    </script>
+</body>
+</html>
