@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加数据</title>
+</head>
+<body>
+    <div id="app">
+        <p>这里是a的值：{{a}}</p>
+        <button @click="a.name = 'hahaha'">click</button>
+    </div>
+    
+    <script src="../vue/vue.js"></script>
+    <script>
+        // 注意  这里 onclick 试图添加一个对象的属性  通过这种方式是行不通的 修改或者添加属性
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                a: {
+                    name: 'aa'
+                }
+            },
+            methods: {
+                
+            }
+        });
+
+
+       
+        
+        
+
+    </script>
+
+</body>
+</html>

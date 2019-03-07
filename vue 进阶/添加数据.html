@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加数据</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{name}}</h2>
+        <p>{{age}}</p>
+        <h3>{{obj.o}}</h3>
+        <h3>{{obj.c}}</h3>
+    </div>
+    
+    <script src="../vue/vue.js"></script>
+    <script>
+        
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                name: 'ws',
+                age: 20,
+                obj: {
+                    o: 'o',
+                    b: 'b',
+                    j: 'j'
+                }
+            }
+        });
+        
+        Vue.set(vm.obj,'f','this is f');
+        vm.$set(vm.obj,'d','$set');
+        console.log(vm.obj);
+
+    </script>
+
+</body>
+</html>
