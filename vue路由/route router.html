@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>router route</title>
+
+</head>
+<body>
+    
+    <div id="app">
+        <router-link to="/a">this is a</router-link>
+        <router-link to="/b">this is b</router-link>
+        <router-view></router-view>
+
+        <button @click="showRoute">showRoute</button>
+        <button @click="showRouter">showRouter</button>
+    </div>
+
+   
+
+
+    <script src="./vue/vue.js"></script>
+    <script src="./vue/vue-router.js"></script>
+    <script>
+
+        let a = {
+            template: `<div>123</div>`
+        };
+
+        let b = {
+            template: `<div>345</div>`
+        };
+
+        let c = {
+            template: `<div>唉呀妈呀 这是C</div>`
+        };
+
+        let router = new VueRouter({
+            routes: [
+                {
+                    path: '/a',
+                    component: a,
+                    name: 'a'
+                },
+                {
+                    path: '/b',
+                    component: b,
+                    name: 'b'
+                },
+                {
+                    path: '/c',
+                    component: c,
+                    name: 'c'
+                }
+            ]
+        })
+
+        let vm = new Vue({
+            el: '#app',
+            router,
+            data: {
+                
+            },
+            methods: {
+                showRoute () {
+                    console.log(this.$route);
+                },
+                showRouter () {
+                    this.$router.push('/c');
+                },
+            }
+        });
+
+        console.log(vm);
+
+    </script>
+</body>
+</html>
