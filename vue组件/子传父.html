@@ -9,52 +9,55 @@
 <body>
 
     <div id="app">
-        <child @cn="fn"></child>
-        <p>{{fdata}}</p>
+        <child @childfn="fatherfn"></child>
+        <p>From Child Component -- {{ fatherData }}</p>
     </div>
-
-    <template id="c">
+    
+    <template id="child">
         <div>
-            <p>this is child</p>
+            <p>{{ childData }}</p>
         </div>
     </template>
 
     <script src="../vue/vue.js"></script>
     <script>
-
-        let child = {
-            template: '#c',
+        
+        let childTemplate = {
+            template: '#child',
             data () {
                 return {
-                    c: 'child data'
+                    childData: 'childData'
                 }
             },
             methods: {
-               f () {
-                   this.$emit('cn',this.c);
-               }
+                f () {
+                    this.$emit('childfn',this.childData)
+                }
             },
             created () {
                 this.f();
             }
-        }
+        };
 
         let vm = new Vue({
-            data: {
-                fdata: ''
-            },
+            el: '#app',
             components: {
-                child
+                'child':childTemplate
+            },
+            data:{
+                fatherData: ''
             },
             methods: {
-                fn (val) {
-                    this.fdata = val;
+                fatherfn (val) {
+                    console.log(val);
+                    this.fatherData = val;
                 }
             },
             created () {
-                this.fn();
+                this.fatherfn();
             }
-        }).$mount("#app");
+        });
+
     </script>
 
 </body>
