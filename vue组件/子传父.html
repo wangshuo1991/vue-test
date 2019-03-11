@@ -7,54 +7,58 @@
     <title>子级传递父级</title>
 </head>
 <body>
-
     <div id="app">
-        <child @childfn="fatherfn"></child>
-        <p>From Child Component -- {{ fatherData }}</p>
+
+        <h3>{{ title }}</h3>
+
+        <c1 @cn="fn"></c1>
+
+        <p>from child -- {{ fromChild }}</p>
+
     </div>
-    
-    <template id="child">
+   
+    <template id="c1">
         <div>
-            <p>{{ childData }}</p>
+            <p> {{ c1_data }} </p>
         </div>
     </template>
 
     <script src="../vue/vue.js"></script>
     <script>
         
-        let childTemplate = {
-            template: '#child',
+        let c1 = {
+            template: '#c1',
             data () {
                 return {
-                    childData: 'childData'
+                    c1_data: "this is child"
                 }
             },
             methods: {
                 f () {
-                    this.$emit('childfn',this.childData)
+                    this.$emit('cn',this.c1_data)
                 }
             },
             created () {
                 this.f();
             }
-        };
+        }
 
         let vm = new Vue({
             el: '#app',
-            components: {
-                'child':childTemplate
+            data: {
+                title: "this is father",
+                fromChild: ''
             },
-            data:{
-                fatherData: ''
+            components: {
+                c1
             },
             methods: {
-                fatherfn (val) {
-                    console.log(val);
-                    this.fatherData = val;
+                fn (val) {
+                    this.fromChild = val;
                 }
             },
             created () {
-                this.fatherfn();
+                this.fn();
             }
         });
 
